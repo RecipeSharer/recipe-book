@@ -1,3 +1,38 @@
+import {
+  Switch,
+  Route
+} from 'react-router-dom';
+import Login from './views/Login';
+import DetailView from './views/DetailView';
+import ListView from './views/ListView';
+import Header from './components/Header';
+import UserProvider from './context/UserContext';
+
 export default function App() {
-  return <h1>Hello World</h1>;
+
+
+
+  return (
+    <>
+      <UserProvider>
+        <Header />
+        <Switch>
+          {/* Detail Route */}
+          <Route path='/recipes/:id'>
+            <DetailView />
+          </Route>
+
+          {/* List Route */}
+          <Route path='/recipes'>
+            <ListView />
+          </Route>
+
+          {/* Login Route */}
+          <Route path='/'>
+            <Login />
+          </Route>
+        </Switch>
+      </UserProvider>
+    </>
+  );
 }
