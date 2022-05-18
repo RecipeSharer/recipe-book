@@ -1,10 +1,9 @@
-import { context } from 'msw';
-import React from 'react';
 import { Redirect, Route, useLocation } from 'react-router-dom';
+import useUser from '../hooks/useUser';
 
-export default function PrivateRouter() {
+export default function PrivateRoute({ children, ...rest }) {
   const location = useLocation();
-  // const context = useUser();
+  const context = useUser();
 
 
   return (
