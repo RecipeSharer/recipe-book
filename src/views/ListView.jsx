@@ -21,7 +21,7 @@ export default function ListView() {
           ? <p>Loading...</p>
           : (recipes.map((recipe) =>
             <RecipeItem
-              ket={recipe.id}
+              key={recipe.id}
               recipe={recipe}
             />))
         
