@@ -9,6 +9,7 @@ import Header from './components/Header';
 import { UserProvider } from './context/UserContext';
 import PrivateRoute from './components/PrivateRoute';
 import { Toaster } from 'react-hot-toast';
+import RecipesProvider from './context/RecipesContext';
 
 export default function App() {
 
@@ -18,23 +19,27 @@ export default function App() {
     <>
     <Toaster />
       <UserProvider>
-        <Header />
-        <Switch>
-          {/* Detail Route */}
-          <PrivateRoute path='/recipes/:id'>
-            <DetailView />
-          </PrivateRoute>
+        <RecipesProvider>
+          <Header />
+          <Switch>
+            
+            {/* Detail Route */}
+            <PrivateRoute path='/recipes/:id'>
+              <DetailView />
+            </PrivateRoute>
 
-          {/* List Route */}
-          <PrivateRoute path='/recipes'>
-            <ListView />
-          </PrivateRoute>
+            {/* List Route */}
+            <PrivateRoute path='/recipes'>
+              <ListView />
+            </PrivateRoute>
 
-          {/* Login Route */}
-          <Route path='/'>
-            <Login />
-          </Route>
-        </Switch>
+            {/* Login Route */}
+            <Route path='/'>
+              <Login />
+            </Route>
+
+          </Switch>
+        </RecipesProvider>
       </UserProvider>
     </>
   );
