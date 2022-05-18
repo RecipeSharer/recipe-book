@@ -1,8 +1,5 @@
-import React from 'react';
-// import { signUpUser, signInUser } from '../services/user';
-
 import { useHistory, useLocation } from 'react-router-dom';
-import { useUser } from '../context/UserContext';
+import useUser from '../hooks/useUser';
 import { useState } from 'react';
 
 

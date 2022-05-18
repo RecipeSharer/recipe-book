@@ -1,9 +1,11 @@
-import React from 'react';
+import useUser from '../hooks/useUser'
 
 export default function Header() {
+  const { signOut } = useUser();
+
   return (
-    <header>
-      Header
-    </header>
+<>
+<button onClick={signOut}>log out</button>
+</>
   )
 };
