@@ -1,9 +1,12 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { RecipesContext } from '../context/RecipesContext';
 import { getRecipes } from '../services/recipes';
 import toast from 'react-hot-toast';
 
 export default function useRecipes() {
+  const [isLoading, setIsLoading] = useState(true);
+
+
   // context bucket
   const context = useContext(RecipesContext);
 
@@ -22,6 +25,7 @@ export default function useRecipes() {
         const results = await getRecipes();
         console.log('results', results);
         dispatch({ action: 'RELOAD', payload: results });
+        setIsLoading(false);
 
       } catch (error) {
         toast.error(err.message);
@@ -35,5 +39,5 @@ export default function useRecipes() {
 
 
 
-  return { recipes }
+  return { recipes, isLoading };
 }

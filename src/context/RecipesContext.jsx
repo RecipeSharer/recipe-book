@@ -28,7 +28,7 @@ function recipesReducer(recipes, { action, payload }) {
   }
 }
 
-export default function RecipesProvider( { children }) {
+export function RecipesProvider( { children }) {
   const [recipes, dispatch] = useReducer(recipesReducer);
 
 

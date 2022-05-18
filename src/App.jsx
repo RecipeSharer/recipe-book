@@ -9,7 +9,7 @@ import Header from './components/Header';
 import { UserProvider } from './context/UserContext';
 import PrivateRoute from './components/PrivateRoute';
 import { Toaster } from 'react-hot-toast';
-import RecipesProvider from './context/RecipesContext';
+import { RecipesProvider } from './context/RecipesContext';
 
 export default function App() {
 
@@ -22,7 +22,7 @@ export default function App() {
         <RecipesProvider>
           <Header />
           <Switch>
-            
+
             {/* Detail Route */}
             <PrivateRoute path='/recipes/:id'>
               <DetailView />
