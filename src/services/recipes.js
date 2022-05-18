@@ -6,7 +6,6 @@ export async function getRecipes() {
     .select();
     // .order('created_at', { ascending: false });
   
-  console.log('request', request);
   return parseData(request);
 }
 

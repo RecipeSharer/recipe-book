@@ -21,7 +21,6 @@ function recipesReducer(recipes, { action, payload }) {
       // will spread in old recipe and overwrite with new user id?
       return; 
     case 'RELOAD':
-      console.log('payload', payload);
       return payload;
     default:
       throw Error(`Unknown action: ${action}`);

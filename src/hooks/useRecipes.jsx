@@ -23,7 +23,6 @@ export default function useRecipes() {
     async function getAndDispatchRecipes() {
       try {
         const results = await getRecipes();
-        console.log('results', results);
         dispatch({ action: 'RELOAD', payload: results });
         setIsLoading(false);
 
