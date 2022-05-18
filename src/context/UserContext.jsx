@@ -5,12 +5,8 @@ import {
   useState,
   // useEffect
 } from 'react';
-import {
-  getUser,
-  signUpUser,
-  signInUser,
-  signOutUser
-} from '../services/user';
+import { getUser } from '../services/user';
+
 
 const UserContext = createContext();
 
@@ -18,26 +14,6 @@ export default function UserProvider({ children }) {
   // get the current user if there is one signed in
   const currentUser = getUser();
   const [user, setUser] = useState(currentUser || { email: null });
-
-  // sign up/in/out functions
-  async function signUp(email, password) {
-    const newUser = await signUpUser({ email, password });
-    if (newUser) {
-      setUser(newUser);
-    }
-  }
-
-  async function signIn(email, password) {
-    const authenticatedUser = await signInUser({ email, password });
-    if (authenticatedUser) {
-      setUser(authenticatedUser);
-    }
-  }
-
-  async function signOut() {
-    await signOutUser();
-    setUser({ email: null });
-  }
 
 
   return (
