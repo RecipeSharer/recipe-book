@@ -27,6 +27,10 @@ export default function App() {
             <PrivateRoute path='/recipes/:id'>
               <DetailView />
             </PrivateRoute>
+            
+            <PrivateRoute exact path='/recipes/add'>
+              {/* <AddRecipe /> */}
+            </PrivateRoute>
 
             {/* List Route */}
             <PrivateRoute path='/recipes'>
