@@ -27,7 +27,7 @@ export default function App() {
             <ListView />
           </Route>
 
-          {/* Home/Login Route */}
+          {/* Login Route */}
           <Route path='/'>
             <Login />
           </Route>
