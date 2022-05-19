@@ -19,3 +19,12 @@ export async function deleteRecipe(id) {
   return parseData(request);
 }
 
+export async function updateRecipe(id, recipe) {
+  const request = await client
+    .from('recipes')
+    .update(recipe)
+    .match({ id })
+    .single();
+  
+  return parseData(request);
+}
