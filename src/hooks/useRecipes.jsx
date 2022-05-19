@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { RecipesContext } from '../context/RecipesContext';
-import { getRecipes } from '../services/recipes';
+import { getRecipes, addRecipe } from '../services/recipes';
 import toast from 'react-hot-toast';
 
 export default function useRecipes() {
@@ -26,17 +26,26 @@ export default function useRecipes() {
         dispatch({ action: 'RELOAD', payload: results });
         setIsLoading(false);
 
-      } catch (error) {
+      } catch (err) {
         toast.error(err.message);
         throw err;
       }
     }
     getAndDispatchRecipes();
   }, [])
+
+  async function add(recipe) {
+    try{
+      const result = await addRecipe(recipe);
+      dispatch({ action: 'CREATE', payload: result });
+      toast.success(`Your recipe, ${recipe.title}, has been added!`)
+
+    } catch (err) {
+      toast.error(err.message);
+      throw err;
+    }
+  }
   
 
-
-
-
-  return { recipes, isLoading };
+  return { recipes, isLoading, add };
 }
