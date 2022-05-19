@@ -1,4 +1,5 @@
-import useUser from '../hooks/useUser'
+import useUser from '../hooks/useUser';
+
 
 export default function Header() {
   const { signOut } = useUser();

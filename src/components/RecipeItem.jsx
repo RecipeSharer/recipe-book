@@ -5,7 +5,7 @@ export default function RecipeItem({ recipe }) {
 
   
   return (
-    <Link to={`/recipes/${recipe.id}`} >
+    <Link to={`/recipes/detail/${recipe.id}`} >
       <h3>{recipe.title}</h3>
       {/* <p>Created at {new Date(recipe.created_at).toLocaleDateString()}</p>
       <p>{recipe.description}</p>
