@@ -29,11 +29,12 @@ export default function DetailView() {
               Created at {new Date(recipe[0].created_at).toLocaleDateString()}
             </p>
           <p>{recipe[0].description}</p>
-          <h4>Ingredients:</h4>
+          <p>{recipe[0].ingredients}</p>
+          {/* <h4>Ingredients:</h4>
           {
             recipe[0].ingredients?.map((ingredient) =>
               <li key={ingredient}>{ingredient}</li>)
-          }
+          } */}
           {recipe[0].user_id === user.id 
               ? <>
                 <button>Edit Recipe</button>
