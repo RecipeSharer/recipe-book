@@ -1,9 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import useRecipes from '../hooks/useRecipes';
+import useUser from '../hooks/useUser'
 
 export default function DetailView() {
   const params = useParams();
+  const { user } = useUser();
+  console.log('user.id', user.id)
 
   const { recipes, isLoading } = useRecipes();
   let recipe;
@@ -11,7 +14,7 @@ export default function DetailView() {
 
   if (!isLoading) {
     recipe = recipes.filter((recipe) => Number(params.id) === recipe.id);
-    console.log('recipe', recipe);
+    console.log('recipe user_id', recipe[0].user_id);
   }
   
 
@@ -27,16 +30,22 @@ export default function DetailView() {
             </p>
           <p>{recipe[0].description}</p>
           <h4>Ingredients:</h4>
-          
-         {
+          {
             recipe[0].ingredients?.map((ingredient) =>
               <li key={ingredient}>{ingredient}</li>)
           }
+          {recipe[0].user_id === user.id 
+              ? <>
+                <button>Edit Recipe</button>
+                <button>Delete Recipe</button>
+              </>
+              : <button>Copy Recipe</button>
+            // <button>Delete Recipe</button>
+            
+          }
         </>
-      )
-
+        )
       }
-  
     </div>
   )
 };
