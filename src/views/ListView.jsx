@@ -11,7 +11,7 @@ export default function ListView() {
     <div>
       <h2>List of Recipes</h2>
 
-      <Link to='recipes/add'>
+      <Link to='/recipes/add'>
         <button>Add a new recipe</button>
       </Link>
 

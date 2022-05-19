@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { RecipesContext } from '../context/RecipesContext';
-import { getRecipes, addRecipe } from '../services/recipes';
+import { getRecipes, addRecipe, deleteRecipe } from '../services/recipes';
 import toast from 'react-hot-toast';
 
 export default function useRecipes() {
@@ -35,7 +35,7 @@ export default function useRecipes() {
   }, [])
 
   async function add(recipe) {
-    try{
+    try {
       const result = await addRecipe(recipe);
       dispatch({ action: 'CREATE', payload: result });
       toast.success(`Your recipe, ${recipe.title}, has been added!`)
@@ -45,7 +45,18 @@ export default function useRecipes() {
       throw err;
     }
   }
+
+  async function deleteRec(id) {
+    try {
+      await deleteRecipe(id);
+      dispatch({ action: 'DELETE', payload: id, });
+      toast.success('You have deleted your recipe')
+    } catch (err) {
+      toast.error(err.message);
+      throw err;
+    }
+  }
   
 
-  return { recipes, isLoading, add };
+  return { recipes, isLoading, add, deleteRec };
 }

@@ -16,7 +16,7 @@ function recipesReducer(recipes, { action, payload }) {
     case 'UPDATE':
       return recipes.map((recipe) => (recipe.id === payload.id ? payload : recipe));
     case 'DELETE':
-      return recipes.filters((recipe) => recipe.id !== payload.id);
+      return recipes.filter((recipe) => recipe.id !== payload.id);
     case 'COPY':
       // will spread in old recipe and overwrite with new user id?
       return; 

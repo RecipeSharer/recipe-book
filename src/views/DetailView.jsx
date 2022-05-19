@@ -1,22 +1,25 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import useRecipes from '../hooks/useRecipes';
 import useUser from '../hooks/useUser'
 
 export default function DetailView() {
   const params = useParams();
+  const history = useHistory();
   const { user } = useUser();
-  console.log('user.id', user.id)
-
-  const { recipes, isLoading } = useRecipes();
+  const { recipes, isLoading, deleteRec } = useRecipes();
   let recipe;
-
 
   if (!isLoading) {
     recipe = recipes.filter((recipe) => Number(params.id) === recipe.id);
-    console.log('recipe user_id', recipe[0].user_id);
   }
   
+  async function handleDelete() {
+    await deleteRec(Number(params.id));
+
+    history.replace('/recipes');
+  }
+
 
   return (
     <div>
@@ -38,7 +41,7 @@ export default function DetailView() {
           {recipe[0].user_id === user.id 
               ? <>
                 <button>Edit Recipe</button>
-                <button>Delete Recipe</button>
+                <button onClick={handleDelete}>Delete Recipe</button>
               </>
               : <button>Copy Recipe</button>
             // <button>Delete Recipe</button>
