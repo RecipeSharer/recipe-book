@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { RecipesContext } from '../context/RecipesContext';
-import { getRecipes, addRecipe, deleteRecipe } from '../services/recipes';
+import { getRecipes, addRecipe, deleteRecipe, updateRecipe } from '../services/recipes';
 import toast from 'react-hot-toast';
 
 export default function useRecipes() {
@@ -56,7 +56,18 @@ export default function useRecipes() {
       throw err;
     }
   }
+
+  async function update(id, recipe) {
+    try {
+      const updatedRecipe = await updateRecipe(id, recipe);
+      dispatch({ action: 'UPDATE', payload: { id, recipe } })
+      toast.success(`You have updated the recipe ${recipe.title}`)
+    } catch (error) {
+      toast.error(error.message);
+      throw error;
+    }
+  }
   
 
-  return { recipes, isLoading, add, deleteRec };
+  return { recipes, isLoading, add, deleteRec, update };
 }
