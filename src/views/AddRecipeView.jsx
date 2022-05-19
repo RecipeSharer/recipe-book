@@ -1,6 +1,7 @@
 import useRecipes from '../hooks/useRecipes';
 // import useUser from '../hooks/useUser';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 export default function AddRecipeView() {
   const { add } = useRecipes();
@@ -8,12 +9,14 @@ export default function AddRecipeView() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [ingredients, setIngredients] = useState(null);
+  const history = useHistory();
 
   async function handleSubmit(e) {
     e.preventDefault();
     const newRecipe = { title, description, ingredients };
 
     await add(newRecipe);
+    history.replace('/recipes');
   }
 
   return (
