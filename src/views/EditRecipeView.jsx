@@ -10,24 +10,25 @@ export default function EditRecipeView() {
     useRecipes();
   const params = useParams();
   // const { user } = useUser();
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [ingredients, setIngredients] = useState(null);
   const history = useHistory();
+  
+  if (!recipes) return null;
 
-  let recipe;
+  const recipe = recipes.filter((recipe) => Number(params.id) === recipe.id);
 
-  if (!isLoading) {
-    recipe = recipes.filter((recipe) => Number(params.id) === recipe.id);
-  }
+  
+  const [title, setTitle] = useState(recipe[0].title);
+  const [description, setDescription] = useState(recipe[0].description);
+  const [ingredients, setIngredients] = useState(recipe[0].ingredients);
 
   console.log('recipe', recipe);
 
   async function handleSubmit(e) {
     e.preventDefault();
     const editedRecipe = { title, description, ingredients };
+    console.log('editedRecipe', editedRecipe)
 
-    await update(editedRecipe);
+    await update(Number(params.id), editedRecipe);
     history.replace('/recipes');
   }
 
@@ -40,17 +41,17 @@ export default function EditRecipeView() {
           <input
             onChange={(e) => setTitle(e.target.value)}
             placeholder="title"
-            value={recipe[0].title}
+            value={title}
           />
           <textarea
             onChange={(e) => setDescription(e.target.value)}
             placeholder="description"
-            value={recipe[0].description}
+            value={description}
           />
           <input
             onChange={(e) => setIngredients(e.target.value)}
             placeholder="ingredients"
-            value={recipe[0].ingredients}
+            value={ingredients}
           />
           <button>Update Recipe</button>
         </form>

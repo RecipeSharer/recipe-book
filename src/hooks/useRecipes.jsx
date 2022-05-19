@@ -59,6 +59,7 @@ export default function useRecipes() {
 
   async function update(id, recipe) {
     try {
+      console.log('recipe in update context', recipe)
       const updatedRecipe = await updateRecipe(id, recipe);
       dispatch({ action: 'UPDATE', payload: { id, recipe } })
       toast.success(`You have updated the recipe ${recipe.title}`)
