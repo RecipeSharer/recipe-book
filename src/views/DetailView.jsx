@@ -20,6 +20,10 @@ export default function DetailView() {
     history.replace('/recipes');
   }
 
+  function handleEdit() {
+    history.replace(`/recipes/edit/${params.id}`);
+  }
+
 
   return (
     <div>
@@ -40,7 +44,7 @@ export default function DetailView() {
           } */}
           {recipe[0].user_id === user.id 
               ? <>
-                <button>Edit Recipe</button>
+                <button onClick={handleEdit}>Edit Recipe</button>
                 <button onClick={handleDelete}>Delete Recipe</button>
               </>
               : <button>Copy Recipe</button>

@@ -8,6 +8,7 @@ import PrivateRoute from './components/PrivateRoute';
 import { Toaster } from 'react-hot-toast';
 import { RecipesProvider } from './context/RecipesContext';
 import AddRecipeView from './views/AddRecipeView';
+import EditRecipeView from './views/EditRecipeView';
 
 export default function App() {
   return (
@@ -20,6 +21,10 @@ export default function App() {
             {/* Detail Route */}
             <PrivateRoute path="/recipes/detail/:id">
               <DetailView />
+            </PrivateRoute>
+
+            <PrivateRoute exact path="/recipes/edit/:id">
+              <EditRecipeView />
             </PrivateRoute>
 
             <PrivateRoute exact path="/recipes/add">

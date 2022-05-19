@@ -18,3 +18,4 @@ export async function deleteRecipe(id) {
 
   return parseData(request);
 }
+

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 export default function EditRecipeView() {
-  const { add } = useRecipes();
+  // const { add } = useRecipes();
   // const { user } = useUser();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -16,7 +16,7 @@ export default function EditRecipeView() {
     e.preventDefault();
     const editedRecipe = { title, description, ingredients };
 
-    await add(editedRecipe);
+    // await add(editedRecipe);
     history.replace('/recipes');
   }
 
