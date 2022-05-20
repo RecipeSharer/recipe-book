@@ -1,19 +1,30 @@
 import React from 'react';
 import { useState } from 'react';
-// import styles from '../Views.css';
+import toast from 'react-hot-toast';
+import styles from './Form.css';
 
-
-export default function Form({ recipe, onSubmit }) {
+export default function Form({ recipe, onSubmit, label }) {
   const [title, setTitle] = useState(recipe.title);
   const [description, setDescription] = useState(recipe.description);
   const [ingredients, setIngredients] = useState(recipe.ingredients);
+
+  const editedRecipe = { title, description, ingredients };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      await onSubmit(editedRecipe)
+    } catch (error) {
+      toast.error(error);
+    }
+  }
 
 
 
   return (
     <form
-      onSubmit={onSubmit}
-      // className={styles.form}
+      onSubmit={handleSubmit}
+      className={styles.form}
     >
           <input
             value={title}
@@ -30,7 +41,7 @@ export default function Form({ recipe, onSubmit }) {
             onChange={(e) => setIngredients(e.target.value)}
             placeholder="ingredients"
           />
-          <button>Update Recipe</button>
+          <button>{`${label}`} Recipe</button>
         </form>
   )
 };

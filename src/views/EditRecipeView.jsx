@@ -2,7 +2,6 @@ import React from 'react';
 import useRecipes from '../hooks/useRecipes';
 import { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import styles from './Views.css';
 import useUser from '../hooks/useUser';
 import Form from '../components/Form';
 
@@ -12,30 +11,26 @@ export default function EditRecipeView() {
   const history = useHistory();
   const { user } = useUser();
 
-  // if (!recipes && isLoading) return null;
+  // guardrail clause - returns early if we havent fetched our recipes yet
+  if (!recipes) return null;
 
+  // gets our current recipe from all recipes
   const filteredRecipe = (recipes || []).filter((recipe) => Number(params.id) === recipe.id);
 
+  // gets rid of [0]
   const recipe = filteredRecipe[0] || {};
 
+  // checks to see if current recipe's id matches logged in user's id
   const isOwner = user.id === recipe.user_id;
 
-  
-  // const [title, setTitle] = useState(recipe.title);
-  // const [description, setDescription] = useState(recipe.description);
-  // const [ingredients, setIngredients] = useState(recipe.ingredients);
-  
+  // if this isn't the recipes owner kick them to detail page
   if (!isOwner) {
     history.replace(`/recipes/detail/${params.id}`);
     return null;
   }
-  // console.log('recipe', recipe);
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const editedRecipe = { title, description, ingredients };
-    // console.log('editedRecipe', editedRecipe);
-
+  // handle submit form function that takes in the edited recipe from our form
+  async function handleSubmit(editedRecipe) {
     await update(Number(params.id), editedRecipe);
     history.replace('/recipes');
   }
@@ -47,6 +42,7 @@ export default function EditRecipeView() {
       ) : <Form
           recipe={recipe}
           onSubmit={handleSubmit}
+          label='Update'
           />
       }
     </>
