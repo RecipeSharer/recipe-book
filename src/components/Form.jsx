@@ -4,16 +4,16 @@ import toast from 'react-hot-toast';
 import styles from './Form.css';
 
 export default function Form({ recipe, onSubmit, label }) {
-  const [title, setTitle] = useState(recipe.title);
-  const [description, setDescription] = useState(recipe.description);
-  const [ingredients, setIngredients] = useState(recipe.ingredients);
+  const [title, setTitle] = useState(recipe.title || '');
+  const [description, setDescription] = useState(recipe.description || '');
+  const [ingredients, setIngredients] = useState(recipe.ingredients || '');
 
-  const editedRecipe = { title, description, ingredients };
+  const newRecipe = { title, description, ingredients };
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await onSubmit(editedRecipe)
+      await onSubmit(newRecipe)
     } catch (error) {
       toast.error(error);
     }
