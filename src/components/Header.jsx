@@ -1,5 +1,6 @@
 import useUser from '../hooks/useUser';
 import { Link, useLocation } from 'react-router-dom';
+import styles from './Header.css';
 
 
 export default function Header() {
@@ -11,7 +12,8 @@ export default function Header() {
     <>
     {
       user.email && (
-        <>
+        <header className={styles.header}>
+          <h3>Recipes</h3>
           <p>You are signed in as {user.email}</p>
           {
             (pathname != '/recipes')
@@ -21,7 +23,7 @@ export default function Header() {
               </Link>
           }
           <button onClick={signOut}>log out</button>
-        </>
+        </header>
       )    
     }
     </>

@@ -3,10 +3,11 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import styles from './Form.css';
 
+
 export default function Form({ recipe, onSubmit, label }) {
   const [title, setTitle] = useState(recipe.title || '');
   const [description, setDescription] = useState(recipe.description || '');
-  const [ingredients, setIngredients] = useState(recipe.ingredients || '');
+  const [ingredients, setIngredients] = useState(recipe.ingredients || '');; 
 
   const newRecipe = { title, description, ingredients };
 
@@ -18,8 +19,6 @@ export default function Form({ recipe, onSubmit, label }) {
       toast.error(error);
     }
   }
-
-
 
   return (
     <form

@@ -9,6 +9,7 @@ import { Toaster } from 'react-hot-toast';
 import { RecipesProvider } from './context/RecipesContext';
 import AddRecipeView from './views/AddRecipeView';
 import EditRecipeView from './views/EditRecipeView';
+import styles from './App.css';
 
 export default function App() {
   return (
