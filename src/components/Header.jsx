@@ -2,11 +2,17 @@ import useUser from '../hooks/useUser';
 
 
 export default function Header() {
-  const { signOut } = useUser();
+  const { signOut, user } = useUser();
 
   return (
-<>
-<button onClick={signOut}>log out</button>
-</>
+    <>
+    {
+      user.email ? (<>
+          <p>You are signed in as {user.email}</p>
+          <button onClick={signOut}>log out</button>
+        </> )
+        : <></>
+      }
+      </>
   )
 };
