@@ -2,6 +2,7 @@ import useRecipes from '../hooks/useRecipes';
 // import useUser from '../hooks/useUser';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import styles from './Views.css';
 
 export default function AddRecipeView() {
   const { add } = useRecipes();
@@ -21,7 +22,9 @@ export default function AddRecipeView() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form 
+      onSubmit={handleSubmit}
+      className={styles.form}>
         <input onChange={(e) => setTitle(e.target.value)} placeholder="title" />
         <textarea
           onChange={(e) => setDescription(e.target.value)}
