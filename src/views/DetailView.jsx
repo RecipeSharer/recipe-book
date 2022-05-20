@@ -1,7 +1,8 @@
 import React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import useRecipes from '../hooks/useRecipes';
-import useUser from '../hooks/useUser'
+import useUser from '../hooks/useUser';
+import styles from './DetailView.css';
 
 export default function DetailView() {
   const params = useParams();
@@ -35,11 +36,11 @@ export default function DetailView() {
   }
 
   return (
-    <div>
+    <>
       {isLoading
         ? <p>Loading...</p>
         : (
-        <>
+        <div>
           <h3>{recipe[0].title}</h3>
             <p>
               Created at {new Date(recipe[0].created_at).toLocaleDateString()}
@@ -53,9 +54,9 @@ export default function DetailView() {
               </>
               : <button onClick={handleCopy}>Copy Recipe</button>
           }
-        </>
+        </div>
         )
       }
-    </div>
+    </>
   )
 };

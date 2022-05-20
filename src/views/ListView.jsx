@@ -2,21 +2,15 @@ import React from 'react';
 import useRecipes from '../hooks/useRecipes';
 import { Link } from 'react-router-dom';
 import RecipeItem from '../components/RecipeItem';
+import styles from './ListView.css';
 
 export default function ListView() {
   const { recipes, isLoading } = useRecipes();
 
 
   return (
-    <div>
-      <h2>List of Recipes</h2>
-
-      <Link to='/recipes/add'>
-        <button>Add a new recipe</button>
-      </Link>
-
-
-      <ul>
+    <>
+      <div className={styles.list}>
         {isLoading
           ? <p>Loading...</p>
           : (recipes.map((recipe) =>
@@ -24,9 +18,8 @@ export default function ListView() {
               key={recipe.id}
               recipe={recipe}
             />))
-        
       }
-      </ul>
-    </div>
+      </div>
+    </>
   )
 };
