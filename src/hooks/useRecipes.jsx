@@ -41,6 +41,8 @@ export default function useRecipes() {
       dispatch({ action: 'CREATE', payload: result });
       toast.success(`Your recipe, ${recipe.title}, has been added!`)
 
+      return result;
+      
     } catch (err) {
       toast.error(err.message);
       throw err;

@@ -9,12 +9,10 @@ export default function EditRecipeView() {
   const params = useParams();
   const history = useHistory();
 
-  // if (!recipes) return null;
-  let recipe;
+  if (!recipes) return null;
 
-  if (!isLoading) {
-    recipe = recipes.filter((recipe) => Number(params.id) === recipe.id);
-  }
+ const recipe = recipes.filter((recipe) => Number(params.id) === recipe.id);
+
 
   const [title, setTitle] = useState(recipe[0].title);
   const [description, setDescription] = useState(recipe[0].description);

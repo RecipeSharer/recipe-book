@@ -7,7 +7,7 @@ export default function DetailView() {
   const params = useParams();
   const history = useHistory();
   const { user } = useUser();
-  const { recipes, isLoading, deleteRec } = useRecipes();
+  const { recipes, isLoading, deleteRec, add } = useRecipes();
   let recipe;
 
   if (!isLoading) {
@@ -24,6 +24,15 @@ export default function DetailView() {
     history.replace(`/recipes/edit/${params.id}`);
   }
 
+  async function handleCopy() {
+    const copy = { ...recipe[0], id: undefined, user_id: undefined };
+
+    const copiedRecipe = await add(copy);
+
+    console.log(copiedRecipe);
+
+    history.replace(`/recipes/edit/${copiedRecipe.id}`);
+  }
 
   return (
     <div>
@@ -42,7 +51,7 @@ export default function DetailView() {
                 <button onClick={handleEdit}>Edit Recipe</button>
                 <button onClick={handleDelete}>Delete Recipe</button>
               </>
-              : <button>Copy Recipe</button>
+              : <button onClick={handleCopy}>Copy Recipe</button>
           }
         </>
         )
