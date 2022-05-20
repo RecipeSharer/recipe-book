@@ -71,6 +71,6 @@ export default function useRecipes() {
     }
   }
   
-  console.log('recipes', recipes);
+  // console.log('recipes', recipes);
   return { recipes, isLoading, add, deleteRec, update };
 }

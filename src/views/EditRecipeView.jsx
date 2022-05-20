@@ -11,28 +11,29 @@ export default function EditRecipeView() {
   const history = useHistory();
   const { user } = useUser();
 
-  if (!recipes) return null;
+  // if (!recipes && isLoading) return null;
 
-  const recipe = recipes.filter((recipe) => Number(params.id) === recipe.id);
+  const filteredRecipe = (recipes || []).filter((recipe) => Number(params.id) === recipe.id);
 
-  const isOwner = user.id === recipe[0].user_id;
+  const recipe = filteredRecipe[0] || {};
 
+  const isOwner = user.id === recipe.user_id;
+
+  
+  const [title, setTitle] = useState(recipe.title);
+  const [description, setDescription] = useState(recipe.description);
+  const [ingredients, setIngredients] = useState(recipe.ingredients);
+  
   if (!isOwner) {
     history.replace(`/recipes/detail/${params.id}`);
-
     return null;
   }
-
-  const [title, setTitle] = useState(recipe[0].title);
-  const [description, setDescription] = useState(recipe[0].description);
-  const [ingredients, setIngredients] = useState(recipe[0].ingredients);
-
-  console.log('recipe', recipe);
+  // console.log('recipe', recipe);
 
   async function handleSubmit(e) {
     e.preventDefault();
     const editedRecipe = { title, description, ingredients };
-    console.log('editedRecipe', editedRecipe);
+    // console.log('editedRecipe', editedRecipe);
 
     await update(Number(params.id), editedRecipe);
     history.replace('/recipes');
