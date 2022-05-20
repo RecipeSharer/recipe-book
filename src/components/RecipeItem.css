@@ -1,11 +1,14 @@
 .recipeItem {
     margin: 10px;
-    border: red 1px solid;
     cursor: pointer;
     height: 15rem;
     width: 15rem;
     text-align: center;
     font-family: sans-serif;
+    background-color: rgb(255, 251, 246);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 a:link {
@@ -22,3 +25,6 @@ a:hover {
     color: hotpink;
 }
 
+.image {
+    height: 10rem;
+}

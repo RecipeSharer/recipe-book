@@ -8,7 +8,6 @@
     display: grid;
     grid: 1fr / 1fr 1fr;
     background-color: rgb(255, 251, 246);
-    border: blue 1px solid;
 }
 
 .image {

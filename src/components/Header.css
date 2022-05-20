@@ -1,6 +1,6 @@
 .header {
     height: 6rem;
-    background-color: #eeb15c;
+    background-color: rgb(252, 183, 87);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -21,7 +21,7 @@
 }
 
 .header button {
-    background-color: #eeb15c;
+    background-color: rgb(252, 183, 87);
     border: black 1px solid;
     padding: .25rem;
     cursor: pointer;
