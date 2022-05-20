@@ -1,0 +1,33 @@
+.login {
+  flex-direction: column;
+  text-align: center;
+}
+
+.login h2 {
+    font-size: 1.5rem;
+    margin-right: 6rem;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    letter-spacing: .3rem;
+}
+
+.login form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login input {
+    margin: .2rem;
+}
+
+.login button {
+    background-color: pink;
+    border: black 1px solid;
+    padding: .25rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-right: 1rem;
+    width: 5rem;
+    margin-top: .5rem;
+  }

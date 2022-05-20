@@ -8,10 +8,10 @@ export default function Header() {
   console.log('pathname', pathname);
 
   return (
-    <>
+    <header className={styles.header}>
+      <h3>Recipes</h3>
       {user.email && (
-        <header className={styles.header}>
-          <h3>Recipes</h3>
+        <>
           <p>You are signed in as {user.email}</p>
           {pathname != '/recipes' && (
             <Link to="/recipes">
@@ -23,8 +23,8 @@ export default function Header() {
           </Link>
 
           <button onClick={signOut}>log out</button>
-        </header>
+        </>
       )}
-    </>
+    </header>
   );
 }
