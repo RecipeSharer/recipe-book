@@ -37,19 +37,12 @@ export default function DetailView() {
             </p>
           <p>{recipe[0].description}</p>
           <p>{recipe[0].ingredients}</p>
-          {/* <h4>Ingredients:</h4>
-          {
-            recipe[0].ingredients?.map((ingredient) =>
-              <li key={ingredient}>{ingredient}</li>)
-          } */}
           {recipe[0].user_id === user.id 
               ? <>
                 <button onClick={handleEdit}>Edit Recipe</button>
                 <button onClick={handleDelete}>Delete Recipe</button>
               </>
               : <button>Copy Recipe</button>
-            // <button>Delete Recipe</button>
-            
           }
         </>
         )

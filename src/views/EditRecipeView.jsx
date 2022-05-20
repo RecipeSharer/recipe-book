@@ -1,22 +1,21 @@
 import React from 'react';
 import useRecipes from '../hooks/useRecipes';
-// import useUser from '../hooks/useUser';
 import { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 
 export default function EditRecipeView() {
-  const { recipes, update, isLoading } = 
-    useRecipes();
+  const { recipes, update, isLoading } = useRecipes();
   const params = useParams();
-  // const { user } = useUser();
   const history = useHistory();
-  
-  if (!recipes) return null;
 
-  const recipe = recipes.filter((recipe) => Number(params.id) === recipe.id);
+  // if (!recipes) return null;
+  let recipe;
 
-  
+  if (!isLoading) {
+    recipe = recipes.filter((recipe) => Number(params.id) === recipe.id);
+  }
+
   const [title, setTitle] = useState(recipe[0].title);
   const [description, setDescription] = useState(recipe[0].description);
   const [ingredients, setIngredients] = useState(recipe[0].ingredients);
@@ -39,19 +38,21 @@ export default function EditRecipeView() {
         :
         <form onSubmit={handleSubmit}>
           <input
+           value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="title"
-            value={title}
           />
           <textarea
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="description"
-            value={description}
+            
           />
           <input
+            value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
             placeholder="ingredients"
-            value={ingredients}
+            
           />
           <button>Update Recipe</button>
         </form>

@@ -31,7 +31,7 @@ export default function AddRecipeView() {
           onChange={(e) => setIngredients(e.target.value)}
           placeholder="ingredients"
         />
-        <button onClick={add}>Add Recipe</button>
+        <button>Add Recipe</button>
       </form>
     </>
   );

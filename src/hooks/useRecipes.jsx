@@ -22,6 +22,7 @@ export default function useRecipes() {
   useEffect(() => {
     async function getAndDispatchRecipes() {
       try {
+        setIsLoading(true);
         const results = await getRecipes();
         dispatch({ action: 'RELOAD', payload: results });
         setIsLoading(false);
@@ -59,8 +60,7 @@ export default function useRecipes() {
 
   async function update(id, recipe) {
     try {
-      console.log('recipe in update context', recipe)
-      const updatedRecipe = await updateRecipe(id, recipe);
+      await updateRecipe(id, recipe);
       dispatch({ action: 'UPDATE', payload: { id, recipe } })
       toast.success(`You have updated the recipe ${recipe.title}`)
     } catch (error) {
@@ -69,6 +69,6 @@ export default function useRecipes() {
     }
   }
   
-
+  console.log('recipes', recipes);
   return { recipes, isLoading, add, deleteRec, update };
 }
