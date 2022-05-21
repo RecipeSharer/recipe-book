@@ -37,7 +37,7 @@ export default function useUser() {
   async function signOut() {
     await signOutUser();
     setUser({ email: null });
-    toast('You are signed out');
+    toast('You have signed out');
   }
 
   return { user, signIn, signOut, signUp };

@@ -1,0 +1,28 @@
+.detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info {
+    display: grid;
+    grid: 1fr / 1fr 1fr;
+    background-color: rgb(255, 251, 246);
+}
+
+.image {
+    height: 25rem;
+}
+
+.text {
+    margin-left: 2rem;
+}
+
+.text button {
+    background-color: pink;
+    border: black 1px solid;
+    padding: .25rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-right: 1rem;
+}

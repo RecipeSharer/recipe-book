@@ -1,6 +1,7 @@
 import { useHistory, useLocation } from 'react-router-dom';
 import useUser from '../hooks/useUser';
 import { useState } from 'react';
+import styles from './Login.css';
 
 
 export default function Login() {
@@ -58,7 +59,7 @@ export default function Login() {
 
 
   return (
-    <div>
+    <div className={styles.login}>
       <h2>Sign In / Sign Up</h2>
       <form
         action="email"
